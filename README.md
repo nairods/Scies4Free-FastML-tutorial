@@ -7,7 +7,7 @@ The tutorial is designed to be run entirely in **Jupyter notebooks**, either loc
 
 ## Motivation and Background
 
-At the CERN Large Hadron Collider (LHC), experiments such as **CMS** record collisions at an extremely high rate. Since it is neither technically nor economically feasible to store all collision data, a multi-level **trigger system** is used to decide, in real time, which events should be kept for further analysis.
+At the CERN Large Hadron Collider (LHC), experiments such as **CMS** record collisions at an extremely high rate. Since it is neither technically nor economically feasible to store all collision data, a multi-level **trigger system** is used to decide, in real time, which events should be kept for further analysis. The CMS trigger system consists of two stages: the Level-1 (L1) Trigger, a custom hardware-based system that reduces the event rate by more than 99%, followed by the High-Level Trigger (HLT), a software-based system running on CPU and GPU farms that further reduces the data volume by approximately 95%.
 
 The **Level-1 (L1) Trigger** operates under particularly strict constraints:
 - Latency of order **microseconds**
@@ -17,6 +17,8 @@ The **Level-1 (L1) Trigger** operates under particularly strict constraints:
 As collision complexity increases at the **High-Luminosity LHC (HL-LHC)**, traditional cut-based algorithms become increasingly difficult to scale. **Machine-learning-based particle classification**, deployed directly on FPGAs, has therefore become a key strategy to maintain physics performance while respecting real-time constraints.
 
 This tutorial walks through the full chain from model training to hardware-oriented synthesis, illustrating the practical trade-offs involved.
+
+<img width="698" height="434" alt="image" src="https://github.com/user-attachments/assets/060e77c9-a470-4084-b97a-1c716608a92a" />
 
 ---
 
