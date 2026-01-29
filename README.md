@@ -35,16 +35,15 @@ The tutorial follows a realistic end-to-end workflow:
 ### 2. Machine Learning Models
 We train and compare several model families commonly used in fast inference scenarios:
 - Dense Neural Networks (DNNs)
-- Boosted Decision Trees (BDTs)
 - Set-based architectures (e.g. DeepSets)
-- Transformer-based models (where applicable)
+- Transformer-based models 
 
-Model performance is evaluated in terms of classification accuracy and physics-relevant metrics.
+Model performance is evaluated in terms of signal efficiency versus trigger rate, ensuring that physics performance is maximised without exceeding the limited trigger bandwidth.
 
 ### 3. Quantisation and Pruning
 To make models suitable for FPGA deployment, we explore:
-- Fixed-point quantisation using **QKeras**
-- Advanced quantisation techniques (e.g. **HGQ**, where applicable)
+- Fixed-point homogeneous quantisation using **QKeras**
+- Advanced heterogeneous quantisation techniques (**HGQ**)
 - Model pruning and architectural simplifications
 - Performance comparisons between floating-point and quantised models
 
@@ -53,7 +52,7 @@ The impact of quantisation on both accuracy and hardware suitability is discusse
 ### 4. HLS and FPGA Synthesis
 Quantised models are converted to hardware descriptions using **High-Level Synthesis (HLS)** tools:
 - **hls4ml** (primary framework)
-- Optional comparisons with other toolchains (e.g. da4ml, conifer)
+- Optional comparisons with other toolchains (e.g. da4ml)
 
 We demonstrate:
 - Model-to-HLS conversion
@@ -87,7 +86,6 @@ You can open any notebook directly in Colab via the provided links.
 This tutorial is aimed at:
 - Students and early-career researchers in HEP
 - ML practitioners interested in low-latency inference
-- FPGA developers exploring ML-based workloads
 - Participants in FastML or trigger-related workshops
 
 No prior FPGA experience is required.
