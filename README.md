@@ -1,7 +1,9 @@
 # FastML Tutorial: Particle Classification and FPGA Deployment
 
 This repository contains a hands-on tutorial on **fast machine learning (FastML)** for real-time particle classification in high-energy physics, with a focus on **low-latency inference and FPGA deployment**.  
+
 The tutorial is designed to be run entirely in **Jupyter notebooks**, either locally or directly in **Google Colab**, and is suitable for students and researchers with basic Python and ML familiarity.
+
 
 ---
 
