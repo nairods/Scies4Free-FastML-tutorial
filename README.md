@@ -4,7 +4,7 @@ This repository contains a hands-on tutorial on **fast machine learning (FastML)
 
 The tutorial is designed to be run entirely in **Jupyter notebooks**, either locally or directly in **Google Colab**, and is suitable for students and researchers with basic Python and ML familiarity.
 
-
+[Open this repository in Colab](https://colab.research.google.com/github/nairods/Scies4Free-FastML-tutorial/)
 ---
 
 ## Motivation and Background
