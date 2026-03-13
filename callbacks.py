@@ -13,32 +13,36 @@ from tensorflow.keras.callbacks import Callback, EarlyStopping, History, ModelCh
 
 
 class newline_callbacks_begin(Callback):
-    def __init__(self, outputDir):
+    def __init__(self, outputDir, model_tag='model'):
         self.outputDir = outputDir
+        self.model_tag = model_tag
         self.loss = []
         self.val_loss = []
         self.full_logs = []
 
-    def on_epoch_end(self, epoch, epoch_logs={}):  # noqa: B006
+    def on_epoch_end(self, epoch, epoch_logs={}):
         import os
 
-        lossfile = os.path.join(self.outputDir, 'losses.log')
+        lossfile = os.path.join(self.outputDir, f'{self.model_tag}_losses.log')
         print('\n***callbacks***\nsaving losses to ' + lossfile)
+
         self.loss.append(epoch_logs.get('loss'))
         self.val_loss.append(epoch_logs.get('val_loss'))
-        f = open(lossfile, 'w')
-        for i in range(len(self.loss)):
-            f.write(str(self.loss[i]))
-            f.write(" ")
-            f.write(str(self.val_loss[i]))
-            f.write("\n")
-        f.close()
+
+        with open(lossfile, 'w') as f:
+            for i in range(len(self.loss)):
+                f.write(str(self.loss[i]))
+                f.write(" ")
+                f.write(str(self.val_loss[i]))
+                f.write("\n")
+
         normed = {}
         for vv in epoch_logs:
             normed[vv] = float(epoch_logs[vv])
         self.full_logs.append(normed)
-        lossfile = os.path.join(self.outputDir, 'full_info.log')
-        with open(lossfile, 'w') as out:
+
+        infofile = os.path.join(self.outputDir, f'{self.model_tag}_full_info.log')
+        with open(infofile, 'w') as out:
             out.write(json.dumps(self.full_logs))
 
 
@@ -75,9 +79,10 @@ class all_callbacks:
         lr_epsilon=0.001,
         lr_cooldown=4,
         lr_minimum=1e-5,
-        outputDir=''
+        outputDir='',
+        model_tag='model'
     ):
-        self.nl_begin = newline_callbacks_begin(outputDir)
+        self.nl_begin = newline_callbacks_begin(outputDir, model_tag)
         self.nl_end = newline_callbacks_end()
 
         self.stopping = EarlyStopping(
@@ -99,14 +104,14 @@ class all_callbacks:
         )
 
         self.modelbestcheck = ModelCheckpoint(
-            outputDir + "/KERAS_check_best_model.keras",
+            outputDir + f"/{model_tag}_best.keras",
             monitor='val_loss',
             verbose=1,
             save_best_only=True
         )
 
         self.modelbestcheckweights = ModelCheckpoint(
-            outputDir + "/KERAS_check_best_model.weights.h5",
+            outputDir + f"/{model_tag}_best.weights.h5",
             monitor='val_loss',
             verbose=1,
             save_best_only=True,
@@ -114,23 +119,23 @@ class all_callbacks:
         )
 
         self.modelcheckperiod = ModelCheckpoint(
-            outputDir + "/KERAS_check_model_epoch{epoch:02d}.keras",
+            outputDir + f"/{model_tag}_epoch" + "{epoch:02d}.keras",
             verbose=1,
             save_freq='epoch'
         )
 
         self.modelcheck = ModelCheckpoint(
-            outputDir + "/KERAS_check_model_last.keras",
+            outputDir + f"/{model_tag}_last.keras",
             verbose=1
         )
 
         self.modelcheckweights = ModelCheckpoint(
-            outputDir + "/KERAS_check_model_last.weights.h5",
+            outputDir + f"/{model_tag}_last.weights.h5",
             verbose=1,
             save_weights_only=True
         )
 
-        self.tb = TensorBoard(log_dir=outputDir + '/logs')
+        self.tb = TensorBoard(log_dir=outputDir + f'/{model_tag}_logs')
 
         self.history = History()
         self.timer = Losstimer()
