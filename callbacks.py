@@ -103,13 +103,6 @@ class all_callbacks:
             min_lr=lr_minimum,
         )
 
-        self.modelbestcheck = ModelCheckpoint(
-            outputDir + f"/{model_tag}_best.keras",
-            monitor='val_loss',
-            verbose=1,
-            save_best_only=True
-        )
-
         self.modelbestcheckweights = ModelCheckpoint(
             outputDir + f"/{model_tag}_best.weights.h5",
             monitor='val_loss',
@@ -118,20 +111,16 @@ class all_callbacks:
             save_weights_only=True,
         )
 
-        self.modelcheckperiod = ModelCheckpoint(
-            outputDir + f"/{model_tag}_epoch" + "{epoch:02d}.keras",
-            verbose=1,
-            save_freq='epoch'
-        )
-
-        self.modelcheck = ModelCheckpoint(
-            outputDir + f"/{model_tag}_last.keras",
-            verbose=1
-        )
-
         self.modelcheckweights = ModelCheckpoint(
             outputDir + f"/{model_tag}_last.weights.h5",
             verbose=1,
+            save_weights_only=True
+        )
+
+        self.modelcheckperiodweights = ModelCheckpoint(
+            outputDir + f"/{model_tag}_epoch" + "{epoch:02d}.weights.h5",
+            verbose=1,
+            save_freq='epoch',
             save_weights_only=True
         )
 
@@ -142,11 +131,9 @@ class all_callbacks:
 
         self.callbacks = [
             self.nl_begin,
-            self.modelbestcheck,
             self.modelbestcheckweights,
-            self.modelcheck,
             self.modelcheckweights,
-            self.modelcheckperiod,
+            self.modelcheckperiodweights,
             self.reduce_lr,
             self.stopping,
             self.nl_end,
