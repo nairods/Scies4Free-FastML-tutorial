@@ -34,7 +34,7 @@ This progression is intended to give participants both a solid ML foundation and
 
 ## How to Run the Tutorial
 
-The notebooks are intended to be runnable in Binder, Google Colab or in a local Jupyter environment.
+The notebooks are intended to be runnable in Google Colab or in a local Jupyter environment.
 
 Each notebook includes:
 - Environment setup (package installation)
