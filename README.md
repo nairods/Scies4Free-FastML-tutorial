@@ -2,7 +2,8 @@
 
 This repository contains a hands-on tutorial series that introduces key machine learning concepts through progressively more advanced examples, starting with a simple medical classification task and building up to real-time particle classification and FPGA deployment.
 
-The tutorial is designed to run in Jupyter notebooks, either locally or in Google Colab, and is aimed at students, beginners in machine learning, and researchers who want an accessible introduction to both standard ML workflows and hardware-aware inference.
+The tutorial is designed to run in Jupyter notebooks, and is aimed at students, beginners in ML and researchers who want an accessible introduction to both standard ML workflows and hardware-aware inference.
+
 ---
 
 ## Motivation and Background
@@ -11,6 +12,7 @@ Machine learning has become an important tool across science, engineering, medic
 This workshop introduces machine learning in a gradual and practical way. We begin with a simple classification problem to build intuition for core concepts such as features, labels, training, evaluation, and model interpretation, and then move to more complex applications such as particle classification in high-energy physics.
 
 A final goal of the workshop is to show that building an accurate model is often only part of the problem. In many real-world applications, models must also satisfy constraints on latency, memory usage, power consumption, or hardware resources, which makes efficient implementations increasingly important. This is where topics such as quantisation, pruning, and FPGA-oriented deployment become relevant.
+
 ---
 
 ## Tutorial Overview
