@@ -1,99 +1,60 @@
-# FastML Tutorial: Particle Classification and FPGA Deployment
+# (Fast)ML Tutorial: From Introductory Classification to FPGA Deployment
 
-This repository contains a hands-on tutorial on **fast machine learning (FastML)** for real-time particle classification in high-energy physics, with a focus on **low-latency inference and FPGA deployment**.  
+This repository contains a hands-on tutorial series that introduces key machine learning concepts through progressively more advanced examples, starting with a simple medical classification task and building up to real-time particle classification and FPGA deployment.
 
-The tutorial is designed to be run entirely in **Jupyter notebooks**, either locally or directly in **Google Colab**, and is suitable for students and researchers with basic Python and ML familiarity.
-
-<sub>[Open this repository in Colab](https://colab.research.google.com/github/nairods/Scies4Free-FastML-tutorial/)<sub>
+The tutorial is designed to run in Jupyter notebooks, either locally or in Google Colab, and is aimed at students, beginners in machine learning, and researchers who want an accessible introduction to both standard ML workflows and hardware-aware inference.
 ---
 
 ## Motivation and Background
+Machine learning has become an important tool across science, engineering, medicine, and industry. It is widely used to identify patterns in data, make predictions, and support decision-making, especially in problems where traditional rule-based approaches become difficult to scale. As datasets continue to grow in size and complexity, machine learning is also playing an increasingly important role in research and scientific discovery.
 
-At the CERN Large Hadron Collider (LHC), experiments such as **CMS** record collisions at an extremely high rate. Since it is neither technically nor economically feasible to store all collision data, a multi-level **trigger system** is used to decide, in real time, which events should be kept for further analysis. The CMS trigger system consists of two stages: the Level-1 (L1) Trigger, a custom hardware-based system that reduces the event rate by more than 99%, followed by the High-Level Trigger (HLT), a software-based system running on CPU and GPU farms that further reduces the data volume by approximately 95%.
+This workshop introduces machine learning in a gradual and practical way. We begin with a simple classification problem to build intuition for core concepts such as features, labels, training, evaluation, and model interpretation, and then move to more complex applications such as particle classification in high-energy physics.
 
-The **Level-1 (L1) Trigger** operates under particularly strict constraints:
-- Latency of order **microseconds**
-- Limited on-chip memory and logic resources
-- Implementation on **FPGAs**
-
-As collision complexity increases at the **High-Luminosity LHC (HL-LHC)**, traditional cut-based algorithms become increasingly difficult to scale. **Machine-learning-based particle classification**, deployed directly on FPGAs, has therefore become a key strategy to maintain physics performance while respecting real-time constraints.
-
-This tutorial walks through the full chain from model training to hardware-oriented synthesis, illustrating the practical trade-offs involved.
-
-<img width="698" height="434" alt="image" src="https://github.com/user-attachments/assets/060e77c9-a470-4084-b97a-1c716608a92a" />
-
+A final goal of the workshop is to show that building an accurate model is often only part of the problem. In many real-world applications, models must also satisfy constraints on latency, memory usage, power consumption, or hardware resources, which makes efficient implementations increasingly important. This is where topics such as quantisation, pruning, and FPGA-oriented deployment become relevant.
 ---
 
 ## Tutorial Overview
 
-The tutorial follows a realistic end-to-end workflow:
+This workshop is structured as a gradual introduction to machine learning in science:
 
-### 1. Dataset and Physics Task
-- Use of the **OpenML `lhc_jets` dataset**
-- Multiclass particle classification task (e.g. different jet or particle types)
-- Discussion of features, labels, and performance metrics
-- Contextualisation within LHC trigger use cases
+### 1. Introductory classification with the Heart Disease dataset
+We begin with a simple binary classification problem to introduce core ML concepts such as features, labels, training, validation, testing, and model evaluation.
 
-### 2. Machine Learning Models
-We train and compare several model families commonly used in fast inference scenarios:
-- Dense Neural Networks (DNNs)
-- Set-based architectures (e.g. DeepSets)
-- Transformer-based models 
+### 2. Particle classification with jet data
+We then move to a more realistic scientific application: classifying particle jets in high-energy physics. This part introduces more complex datasets and compares different neural network architectures.
 
-Model performance is evaluated in terms of signal efficiency versus trigger rate, ensuring that physics performance is maximised without exceeding the limited trigger bandwidth.
+### 3. Fast machine learning for hardware deployment
+Finally, we explore how machine learning models can be adapted for low-latency inference on FPGAs using hls4ml, including techniques such as quantisation-aware training and pruning.
 
-### 3. Quantisation and Pruning
-To make models suitable for FPGA deployment, we explore:
-- Fixed-point homogeneous quantisation using **QKeras**
-- Advanced heterogeneous quantisation techniques (**HGQ**)
-- Model pruning and architectural simplifications
-- Performance comparisons between floating-point and quantised models
-
-The impact of quantisation on both accuracy and hardware suitability is discussed.
-
-### 4. HLS and FPGA Synthesis
-Quantised models are converted to hardware descriptions using **High-Level Synthesis (HLS)** tools:
-- **hls4ml** (primary framework)
-- Optional comparisons with other toolchains (e.g. da4ml)
-
-We demonstrate:
-- Model-to-HLS conversion
-- Configuration and optimisation choices
-- Latency and resource estimation
-
-### 5. FPGA Perspective
-Finally, we examine what a real FPGA synthesis flow looks like by:
-- Inspecting example **Xilinx Vitis/Vivado synthesis reports**
-- Interpreting resource usage (LUTs, DSPs, BRAM)
-- Understanding latency, initiation interval, and throughput constraints
-- Discussing how these metrics relate back to trigger requirements
+This progression is intended to give participants both a solid ML foundation and an appreciation for the challenges of deploying models in real-time systems.
 
 ---
 
 ## How to Run the Tutorial
 
-All notebooks are intended to be runnable in **Google Colab** without local installation.
+The notebooks are intended to be runnable in Binder, Google Colab or in a local Jupyter environment.
 
 Each notebook includes:
 - Environment setup (package installation)
 - Clear execution order
 - Explanatory text and visualisations
 
-You can open any notebook directly in Colab via the provided links.
+You can either work through the notebooks in sequence or use individual notebooks as standalone examples.
 
 ---
 
 ## Intended Audience
 
 This tutorial is aimed at:
-- Students and early-career researchers in HEP
-- ML practitioners interested in low-latency inference
-- Participants in FastML or trigger-related workshops
+- Students learning the basics of machine learning
+- Participants in introductory ML workshops
+- Researchers interested in scientific machine learning
+- Practitioners curious about low-latency inference and FPGA deployment
 
-No prior FPGA experience is required.
+No prior FPGA experience is required, and only basic Python familiarity is assumed.
 
 ---
 
 ## Acknowledgements
 
-This tutorial builds on ideas and tools developed within the CMS trigger and FastML communities, including open-source projects such as **hls4ml**, **QKeras**, and **OpenML**.
+This tutorial builds on ideas and tools developed within the CMS trigger and FastML communities, including open-source projects such as **OpenML**, **hls4ml** and **QKeras**.
