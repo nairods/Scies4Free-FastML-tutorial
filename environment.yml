@@ -17,6 +17,7 @@ dependencies:
   - tensorflow=2.14.0
   - tensorflow-datasets=4.8.3
   - webcolors
+  - ipywidgets
   - widgetsnbextension=3.6.0
   - pip=23.0.1
   - pip:
